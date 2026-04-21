@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: weather-pipeline
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: WEATHER_API_KEY
+        sync: false

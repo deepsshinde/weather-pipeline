@@ -16,7 +16,12 @@ app = FastAPI(title="Weather Data Pipeline API")
 # ========================================
 # ENDPOINTS
 # ========================================
-
+@app.get("/health")
+def health_check():
+    """
+    Health check endpoint for deployment platforms
+    """
+    return {"status": "healthy", "service": "Weather Pipeline API"}
 @app.get("/")
 def root():
     return {
