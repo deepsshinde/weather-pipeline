@@ -36,4 +36,4 @@ A mini data engineering system that fetches, stores, and serves weather data.
 
 ## 🌐 Live Deployment
 
-**API is live at:** https://weather-pipeline-c6lk.onrender.com/docs
+**API is live at:** https://weather-pipeline-a3ul.onrender.com/
