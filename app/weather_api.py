@@ -9,22 +9,39 @@ BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 def fetch_weather_data(city: str):
     """
-    Fetch weather from OpenWeather API
-    Returns dict or None if failed
+    Fetch weather - BYPASSES ALL PROXIES
     """
+    if not API_KEY:
+        print("No API key found")
+        return None
+    
     try:
         params = {
             "q": city,
             "appid": API_KEY,
-            "units": "metric"  # Celsius
+            "units": "metric"
         }
         
-        response = requests.get(BASE_URL, params=params)
-        response.raise_for_status()  # Raise error for bad status
+        # 🔥 FORCE BYPASS PROXY
+        session = requests.Session()
+        session.trust_env = False  # Ignores HTTP_PROXY env vars
+        session.proxies = {}        # Clears any proxy settings
+        
+        print(f"Fetching weather for {city} (bypassing proxy)...")
+        
+        response = session.get(
+            BASE_URL, 
+            params=params,
+            timeout=15,
+            proxies={"http": None, "https": None}  # Extra safety
+        )
+        
+        print(f"Status: {response.status_code}")
+        
+        response.raise_for_status()
         
         data = response.json()
         
-        # Extract only what we need
         return {
             "city": city.lower(),
             "temperature": data["main"]["temp"],
@@ -34,5 +51,5 @@ def fetch_weather_data(city: str):
         }
     
     except requests.exceptions.RequestException as e:
-        print(f"Error fetching weather: {e}")
+        print(f"❌ Request failed: {e}")
         return None
