@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Data Pipeline</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>🌦️ Weather Data Pipeline</h1>
+            <p>Real-time weather data from around the world</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="cityInput" 
+                    placeholder="Enter city name (e.g., Mumbai, London, Tokyo)" 
+                    value="mumbai"
+                >
+                <button onclick="fetchWeather()" class="btn btn-primary">
+                    🔍 Search
+                </button>
+                <button onclick="getUniqueWeather()" class="btn btn-secondary">
+                    📊 View All
+                </button>
+            </div>
+        </section>
+
+        <!-- Current Weather Card -->
+        <section class="weather-section">
+            <div id="currentWeather" class="weather-card">
+                <p class="loading">Enter a city to get started...</p>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="actions-section">
+            <button onclick="cleanupDuplicates()" class="btn btn-danger">
+                🗑️ Cleanup Duplicates
+            </button>
+            <button onclick="countDuplicates()" class="btn btn-info">
+                📈 Count Duplicates
+            </button>
+            <button onclick="goToDocs()" class="btn btn-success">
+                📚 API Docs
+            </button>
+        </section>
+
+        <!-- All Weather Data -->
+        <section class="data-section">
+            <h2>📍 All Weather Records</h2>
+            <div id="weatherData" class="weather-grid">
+                <p class="loading">Click "View All" to see all records...</p>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div id="stats" class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Records</h3>
+                    <p id="totalRecords">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Unique Cities</h3>
+                    <p id="uniqueCities">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Duplicate Records</h3>
+                    <p id="duplicateRecords">0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Messages -->
+        <div id="message" class="message"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Weather Data Pipeline © 2024 | Powered by FastAPI & OpenWeather API</p>
+    </footer>
+
+    <script src="../static/script.js"></script>
+</body>
+</html>

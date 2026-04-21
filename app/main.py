@@ -1,3 +1,6 @@
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+import os
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import Optional
@@ -12,7 +15,13 @@ from app.weather_api import fetch_weather_data
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Weather Data Pipeline API")
+# Mount static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
+# Serve index.html on root
+@app.get("/")
+async def serve_index():
+    return FileResponse("templates/index.html")
 # ========================================
 # ENDPOINTS
 # ========================================
