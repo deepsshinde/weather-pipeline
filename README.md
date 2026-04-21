@@ -37,11 +37,3 @@ A mini data engineering system that fetches, stores, and serves weather data.
 ## 🌐 Live Deployment
 
 **API is live at:** https://weather-pipeline-c6lk.onrender.com/docs
-
-### Try it now:
-
-- **Root:** https://weather-pipeline-c6lk.onrender.com/docs
-- **Fetch Weather:** https://weather-pipeline-xxxx.onrender.com/fetch-weather?city=mumbai
-- **View Data:** https://weather-pipeline-xxxx.onrender.com/weather
-
-⚠️ **Note:** Free tier may take 30-60 seconds to wake up if inactive.
